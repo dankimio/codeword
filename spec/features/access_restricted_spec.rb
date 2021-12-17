@@ -65,7 +65,7 @@ describe 'Accessing a page in the application' do
 
       click_on 'Title One'
 
-      within('h2') { page.should have_content 'Title One' }
+      page.should have_content('Title One')
       page.should have_content('Body One')
     end
 
@@ -102,9 +102,7 @@ describe 'Accessing a page in the application' do
 
         visit '/posts'
 
-        within('.hint') do
-          page.should have_xpath("//small[@title='Cute 4-legged animals']")
-        end
+        page.should have_xpath("//small[@title='Cute 4-legged animals']")
 
         ENV.delete('CODEWORD_HINT')
       end
