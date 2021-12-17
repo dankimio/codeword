@@ -2,11 +2,7 @@ module Codeword
   class CodewordController < Codeword::ApplicationController
     CRAWLER_REGEX = /crawl|googlebot|slurp|spider|bingbot|tracker|click|parser|spider/
 
-    if respond_to?(:skip_before_action)
-      skip_before_action :check_for_codeword
-    else
-      skip_before_filter :check_for_codeword
-    end
+    skip_before_action :check_for_codeword
 
     def unlock
       if params[:codeword].present?
