@@ -5,31 +5,20 @@ module Codeword
     skip_before_action :check_for_codeword
 
     def unlock
-      if params[:codeword].present?
-        user_agent = request.env['HTTP_USER_AGENT'].presence
-        if user_agent && user_agent.downcase.match(CRAWLER_REGEX)
-          head :ok
-          return
-        end
+      user_agent = request.env['HTTP_USER_AGENT'].presence
+      if user_agent && user_agent.downcase.match(CRAWLER_REGEX)
+        head :ok
+        return
+      end
 
+      if params[:codeword].present?
         @codeword = params[:codeword].to_s.downcase
         @return_to = params[:return_to]
-        if @codeword == codeword.to_s.downcase
+        if @codeword == codeword_code.to_s.downcase
           set_cookie
           run_redirect
-        end
-      elsif request.post?
-        if params[:codeword].present? && params[:codeword].respond_to?(:'[]')
-          @codeword = params[:codeword][:codeword].to_s.downcase
-          @return_to = params[:codeword][:return_to]
-          if @codeword == codeword.to_s.downcase
-            set_cookie
-            run_redirect
-          else
-            @wrong = true
-          end
         else
-          head :ok
+          @wrong = true
         end
       else
         respond_to :html

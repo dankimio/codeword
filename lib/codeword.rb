@@ -40,7 +40,7 @@ module Codeword
   end
 
   def codeword_code
-    @codeword ||=
+    @codeword_code ||=
       ENV['CODEWORD'] ||
       ENV['codeword'] ||
       Codeword.from_config(:codeword, :secrets) ||
