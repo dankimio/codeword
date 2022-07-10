@@ -1,6 +1,6 @@
 # Codeword
 
-A simple gem to more elegantly place a staging server or other in-progress rails application behind a basic codeword. It’s easy to implement, share with clients/collaborators, and more beautiful than the typical password-protection sheet. This is a fork of [lockup](https://github.com/interdiscipline/lockup).
+A simple gem to more elegantly place a staging server or other in-progress rails application behind a basic codeword. It’s easy to implement, share with clients/collaborators, and more beautiful than the typical password-protection sheet.
 
 ![Screenshot](./screenshot.png)
 
@@ -102,10 +102,6 @@ If you would like to change the content or design of the codeword page, you can 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Contributing
+## Acknowledgements
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/dankimio/codeword.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Codeword is a fork of [lockup](https://github.com/interdiscipline/lockup).
