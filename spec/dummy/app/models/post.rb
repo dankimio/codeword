@@ -6,7 +6,7 @@ class Post
   POSTS = [
     { id: 1, title: 'Title One', body: 'Body One' },
     { id: 2, title: 'Title Two', body: 'Body Two' }
-  ]
+  ].freeze
 
   def self.all
     POSTS.map { |attrs| new(attrs) }

@@ -1,5 +1,5 @@
 module UserAgentHelper
-  DEFAULT_USER_AGENT = 'Capybara Rack/Test'
+  DEFAULT_USER_AGENT = 'Capybara Rack/Test'.freeze
 
   def reset_user_agent
     set_user_agent_to(DEFAULT_USER_AGENT)

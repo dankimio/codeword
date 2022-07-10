@@ -6,7 +6,7 @@ module Codeword
 
     def unlock
       user_agent = request.env['HTTP_USER_AGENT'].presence
-      if user_agent && user_agent.downcase.match(CRAWLER_REGEX)
+      if user_agent&.downcase&.match(CRAWLER_REGEX)
         head :ok
         return
       end

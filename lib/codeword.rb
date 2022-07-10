@@ -49,7 +49,7 @@ module Codeword
 
   def codeword_cookie_lifetime
     seconds = (cookie_lifetime.to_f * 1.week).to_i
-    if seconds > 0
+    if seconds.positive?
       seconds
     else
       5.years
