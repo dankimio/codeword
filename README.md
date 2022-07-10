@@ -2,6 +2,8 @@
 
 A simple gem to more elegantly place a staging server or other in-progress rails application behind a basic codeword. It’s easy to implement, share with clients/collaborators, and more beautiful than the typical password-protection sheet. This is a fork of [lockup](https://github.com/interdiscipline/lockup).
 
+![Screenshot](./screenshot.png)
+
 ## Installation
 
 1. Add this line to your application’s Gemfile:
