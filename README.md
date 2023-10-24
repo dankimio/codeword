@@ -1,6 +1,6 @@
 # Codeword
 
-A simple gem to more elegantly place a staging server or other in-progress rails application behind a basic codeword. It’s easy to implement, share with clients/collaborators, and more beautiful than the typical password-protection sheet.
+A simple gem to more elegantly place a staging server or other in-progress Ruby on Rails application behind a basic codeword. It’s easy to implement, share with clients/collaborators, and more beautiful than the typical password-protection sheet.
 
 ![Screenshot](./screenshot.png)
 
