@@ -9,10 +9,8 @@ module Codeword
     before_action :check_for_codeword, except: ['unlock']
   end
 
-  def self.from_config(setting, secrets_or_credentials = :credentials)
-    return unless Rails.application.respond_to?(secrets_or_credentials)
-
-    store = Rails.application.public_send(secrets_or_credentials)
+  def self.from_config(setting)
+    store = Rails.application.credentials
 
     store.codeword.respond_to?(:fetch) &&
       store.codeword.fetch(setting, store.public_send("codeword_#{setting}")) ||
@@ -35,16 +33,11 @@ module Codeword
     @cookie_lifetime ||=
       ENV['COOKIE_LIFETIME_IN_WEEKS'] ||
       ENV['cookie_lifetime_in_weeks'] ||
-      Codeword.from_config(:cookie_lifetime_in_weeks, :secrets) ||
       Codeword.from_config(:cookie_lifetime_in_weeks)
   end
 
   def codeword_code
-    @codeword_code ||=
-      ENV['CODEWORD'] ||
-      ENV['codeword'] ||
-      Codeword.from_config(:codeword, :secrets) ||
-      Codeword.from_config(:codeword)
+    @codeword_code ||= ENV['CODEWORD'] || ENV['codeword'] || Codeword.from_config(:codeword)
   end
 
   def codeword_cookie_lifetime
