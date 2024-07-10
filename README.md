@@ -34,26 +34,19 @@ If you think you might need a hint:
 ENV['CODEWORD_HINT'] = 'Something that you do not tell everyone.'
 ```
 
-If you’re using Rails >= 4.1 or Rails >= 5.2, you can add your Codeword Codeword via Rails Secrets or Rails Credentials functionality in your `secrets.yml` or `credentials.yml.enc` file, respectively:
+You can add your codeword via Rails credentials in your `credentials.yml.enc` file (`$ bin/rails credentials:edit`):
 
 ```yml
 codeword: 'love'
 codeword_hint: 'Pepé Le Pew'
 ```
 
-Alternately, Rails Credentials in >= 5.2 may be organized under the `codeword` namespace:
+Alternately, credentials in Rails >= 5.2 may be organized under the `codeword` namespace:
 
 ```yml
 codeword:
   codeword: 'love'
   hint: 'Pepé Le Pew'
-```
-
-If you’re using [Figaro](https://github.com/laserlemon/figaro), set your Codeword codeword and hint (optional) in your application.yml file:
-
-```yml
-codeword: 'love'
-codeword_hint: 'Pepé Le Pew'
 ```
 
 **Codewords are not case-sensitive, by design. Keep it simple.**
