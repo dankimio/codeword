@@ -6,7 +6,7 @@ module Codeword
   extend ActiveSupport::Concern
 
   included do
-    before_action :check_for_codeword, except: ['unlock']
+    before_action :check_for_codeword
   end
 
   def self.from_config(setting)
