@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- BREAKING: Drop support for Rails < 7.2
+- BREAKING: Rename `check_for_codeword` to `require_codeword!`
 - BREAKING: Deprecate Rails secrets in favor of Rails credentials
 - BREAKING: Drop support for Rails < 6.0
 

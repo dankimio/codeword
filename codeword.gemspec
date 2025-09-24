@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
 
-  spec.add_dependency 'rails', '>= 6.1'
+  spec.add_dependency 'rails', '>= 7.2'
 
   spec.add_development_dependency 'capybara', '~> 2.9'
   spec.add_development_dependency 'debug'
