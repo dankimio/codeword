@@ -28,7 +28,7 @@ mount Codeword::Engine, at: '/codeword'
 class ApplicationController < ActionController::Base
   include Codeword
 
-  before_action :check_for_codeword
+  before_action :require_codeword!
 end
 ```
 
@@ -36,7 +36,7 @@ end
 
 ```ruby
 class APIController < ApplicationController
-  skip_before_action :check_for_codeword, raise: false
+  skip_before_action :require_codeword!, raise: false
 end
 ```
 
@@ -80,13 +80,13 @@ codeword:
 2. In your application_controller.rb file, add:
 
 ```ruby
-skip_before_action :check_for_codeword, raise: false
+skip_before_action :require_codeword!, raise: false
 ```
 
 4. In the controller(s) you would like to restrict:
 
 ```ruby
-before_action :check_for_codeword
+before_action :require_codeword!
 ```
 
 ### Link it with no typing:

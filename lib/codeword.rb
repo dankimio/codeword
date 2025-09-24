@@ -5,10 +5,6 @@ require 'codeword/engine'
 module Codeword
   extend ActiveSupport::Concern
 
-  included do
-    before_action :check_for_codeword
-  end
-
   def self.from_config(setting)
     store = Rails.application.credentials
 
@@ -19,7 +15,7 @@ module Codeword
 
   private
 
-  def check_for_codeword
+  def require_codeword!
     return unless respond_to?(:codeword) && codeword_code
     return if cookies[:codeword].present? && cookies[:codeword] == codeword_code.to_s.downcase
 
@@ -28,6 +24,8 @@ module Codeword
       codeword: params[:codeword]
     )
   end
+
+  alias_method :check_for_codeword, :require_codeword!
 
   def cookie_lifetime
     @cookie_lifetime ||=
