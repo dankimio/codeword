@@ -2,7 +2,7 @@ module Codeword
   class CodewordController < Codeword::ApplicationController
     CRAWLER_REGEX = /crawl|googlebot|slurp|spider|bingbot|tracker|click|parser|spider/
 
-    skip_before_action :check_for_codeword
+    skip_before_action :check_for_codeword, raise: false
 
     def unlock
       user_agent = request.env['HTTP_USER_AGENT'].presence

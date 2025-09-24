@@ -17,7 +17,27 @@ gem 'codeword'
 3. Mount the engine in your application’s routes file (usually first, for best results):
 
 ```ruby
+# config/routes.rb
 mount Codeword::Engine, at: '/codeword'
+```
+
+4. Include the `Codeword` module in your application_controller.rb file and check for codeword:
+
+```ruby
+# app/controllers/application_controller.rb
+class ApplicationController < ActionController::Base
+  include Codeword
+
+  before_action :check_for_codeword
+end
+```
+
+5. Skip the check for codeword in the controller(s) you would like to restrict:
+
+```ruby
+class APIController < ApplicationController
+  skip_before_action :check_for_codeword, raise: false
+end
 ```
 
 ## Usage
@@ -37,16 +57,16 @@ ENV['CODEWORD_HINT'] = 'Something that you do not tell everyone.'
 You can add your codeword via Rails credentials in your `credentials.yml.enc` file (`$ bin/rails credentials:edit`):
 
 ```yml
-codeword: 'love'
-codeword_hint: 'Pepé Le Pew'
+codeword: "love"
+codeword_hint: "Pepé Le Pew"
 ```
 
 Alternately, credentials in Rails >= 5.2 may be organized under the `codeword` namespace:
 
 ```yml
 codeword:
-  codeword: 'love'
-  hint: 'Pepé Le Pew'
+  codeword: "love"
+  hint: "Pepé Le Pew"
 ```
 
 **Codewords are not case-sensitive, by design. Keep it simple.**
