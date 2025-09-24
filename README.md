@@ -36,7 +36,7 @@ end
 
 ```ruby
 class APIController < ApplicationController
-  skip_before_action :require_codeword!, raise: false
+  skip_before_action :require_codeword!
 end
 ```
 
