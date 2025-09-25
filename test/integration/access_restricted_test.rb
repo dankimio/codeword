@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class AccessRestrictedTest < ActionDispatch::IntegrationTest
-  include CodewordTestHelper
-
   setup do
     reset_codeword_configuration_cache!
   end
