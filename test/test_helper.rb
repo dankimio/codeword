@@ -8,9 +8,6 @@ require 'capybara/minitest'
 # Load support files
 Dir[File.expand_path('support/**/*.rb', __dir__)].sort.each { |f| require f }
 
-class ActiveSupport::TestCase
-end
-
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Capybara::Minitest::Assertions
