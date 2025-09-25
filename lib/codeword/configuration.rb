@@ -21,9 +21,9 @@ module Codeword
     end
 
     def self.codeword_cookie_lifetime
-      seconds = (cookie_lifetime.to_f * 1.week).to_i
-      if seconds.positive?
-        seconds
+      weeks = cookie_lifetime.to_f
+      if weeks.positive?
+        weeks.weeks
       else
         5.years
       end
