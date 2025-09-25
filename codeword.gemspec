@@ -23,6 +23,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rails', '>= 7.2'
 
-  # no capybara needed; using pure IntegrationTest
   spec.add_development_dependency 'debug'
 end
