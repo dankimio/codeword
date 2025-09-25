@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in test_gem.gemspec
+# Specify your gem's dependencies in codeword.gemspec
 gemspec
 
 gem "irb"
