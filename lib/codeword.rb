@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'codeword/engine'
+require 'codeword/authentication'
 
 module Codeword
   extend ActiveSupport::Concern
@@ -12,20 +13,6 @@ module Codeword
       store.codeword.fetch(setting, store.public_send("codeword_#{setting}")) ||
       store.public_send("codeword_#{setting}") || store.public_send(setting)
   end
-
-  private
-
-  def require_codeword!
-    return unless respond_to?(:codeword) && codeword_code
-    return if cookies[:codeword].present? && cookies[:codeword] == codeword_code.to_s.downcase
-
-    redirect_to codeword.unlock_path(
-      return_to: request.fullpath.split('?codeword')[0],
-      codeword: params[:codeword]
-    )
-  end
-
-  alias_method :check_for_codeword, :require_codeword!
 
   def cookie_lifetime
     @cookie_lifetime ||=
