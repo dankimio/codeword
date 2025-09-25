@@ -1,12 +1,12 @@
-require File.expand_path('boot', __dir__)
+require File.expand_path("boot", __dir__)
 
 # Pick the frameworks you want:
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'active_model'
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "active_model"
 
 Bundler.require(*Rails.groups)
-require 'codeword'
+require "codeword"
 
 module Dummy
   class Application < Rails::Application

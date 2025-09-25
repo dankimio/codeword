@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   before_action :require_codeword!
 
   def render_404
-    render file: Rails.root.join('public', '404.html'), status: 404
+    render file: Rails.root.join("public", "404.html"), status: 404
   end
 end
