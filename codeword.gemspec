@@ -23,8 +23,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rails', '>= 7.2'
 
-  spec.add_development_dependency 'capybara', '~> 2.9'
+  spec.add_development_dependency 'capybara'
   spec.add_development_dependency 'debug'
   spec.add_development_dependency 'launchy', '~> 2.4'
-  spec.add_development_dependency 'rspec-rails', '~> 6.0'
+  spec.add_development_dependency 'rspec-rails', '~> 7.0'
 end
