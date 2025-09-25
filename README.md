@@ -57,16 +57,10 @@ ENV['CODEWORD_HINT'] = 'Something that you do not tell everyone.'
 You can add your codeword via Rails credentials in your `credentials.yml.enc` file (`$ bin/rails credentials:edit`):
 
 ```yml
-codeword: "love"
-codeword_hint: "Pepé Le Pew"
-```
-
-Alternately, credentials in Rails >= 5.2 may be organized under the `codeword` namespace:
-
-```yml
 codeword:
   codeword: "love"
   hint: "Pepé Le Pew"
+  cookie_lifetime_in_weeks: 4
 ```
 
 **Codewords are not case-sensitive, by design. Keep it simple.**

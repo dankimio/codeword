@@ -5,7 +5,7 @@ module Codeword
     def self.from_credentials(setting)
       store = Rails.application.credentials
 
-      store.dig(:codeword, setting) || store["codeword_#{setting}".to_sym] || store[setting]
+      store.dig(:codeword, setting)
     end
 
     def self.cookie_lifetime
