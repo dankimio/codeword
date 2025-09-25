@@ -21,12 +21,12 @@ gem 'codeword'
 mount Codeword::Engine, at: '/codeword'
 ```
 
-4. Include the `Codeword` module in your application_controller.rb file and check for codeword:
+4. Include the `Codeword::Authentication` module in your application_controller.rb file and check for codeword:
 
 ```ruby
 # app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
-  include Codeword
+  include Codeword::Authentication
 
   before_action :require_codeword!
 end

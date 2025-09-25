@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Codeword::CodewordController do
+  include CodewordTestHelper
+
   routes { Codeword::Engine.routes }
 
   describe 'a malicious user posts invalid data' do
@@ -16,11 +18,13 @@ describe Codeword::CodewordController do
   end
 
   describe '#cookie_lifetime' do
+    before { reset_codeword_configuration_cache! }
+
     context 'COOKIE_LIFETIME_IN_WEEKS is set to an integer' do
       before { ENV['COOKIE_LIFETIME_IN_WEEKS'] = '52' }
 
       it 'returns the integer' do
-        controller.send(:codeword_cookie_lifetime).should eq(52.weeks)
+        Codeword::Configuration.codeword_cookie_lifetime.should eq(52.weeks)
       end
     end
 
@@ -28,7 +32,7 @@ describe Codeword::CodewordController do
       before { ENV['COOKIE_LIFETIME_IN_WEEKS'] = 'invalid value' }
 
       it 'returns the integer' do
-        controller.send(:codeword_cookie_lifetime).should eq(5.years)
+        Codeword::Configuration.codeword_cookie_lifetime.should eq(5.years)
       end
     end
 
@@ -36,7 +40,7 @@ describe Codeword::CodewordController do
       before { ENV.delete('COOKIE_LIFETIME_IN_WEEKS') }
 
       it 'returns the integer' do
-        controller.send(:codeword_cookie_lifetime).should eq(5.years)
+        Codeword::Configuration.codeword_cookie_lifetime.should eq(5.years)
       end
     end
   end
