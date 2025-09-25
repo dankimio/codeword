@@ -61,4 +61,19 @@ describe Codeword::CodewordController do
       response.should redirect_to('/posts/1')
     end
   end
+
+  describe 'cookie security attributes' do
+    before do
+      ENV['CODEWORD'] = 'secret'
+      reset_codeword_configuration_cache!
+    end
+
+    it 'sets HttpOnly and SameSite on the codeword cookie' do
+      post 'unlock', params: { codeword: 'secret', return_to: '/posts' }
+      header = response.headers['Set-Cookie']
+      header.should include('codeword=')
+      header.downcase.should include('httponly')
+      header.should match(/samesite=(lax|strict|none)/i)
+    end
+  end
 end

@@ -28,7 +28,13 @@ module Codeword
     private
 
     def set_cookie
-      cookies[:codeword] = { value: @codeword.to_s.downcase, expires: (Time.now + Codeword::Configuration.codeword_cookie_lifetime) }
+      cookies[:codeword] = {
+        value: @codeword.to_s.downcase,
+        expires: Codeword::Configuration.codeword_cookie_lifetime.from_now,
+        httponly: true,
+        secure: request.ssl?,
+        same_site: :lax
+      }
     end
 
     def run_redirect
