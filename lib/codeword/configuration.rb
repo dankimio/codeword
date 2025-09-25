@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Codeword
   module Configuration
     def self.from_credentials(setting)

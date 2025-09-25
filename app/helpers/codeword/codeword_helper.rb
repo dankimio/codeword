@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Codeword
   module CodewordHelper
     def codeword_hint
