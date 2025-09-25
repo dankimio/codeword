@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-5. Skip the check for codeword in the controller(s) you would like to restrict:
+5. Skip the check for codeword in the controller(s) you would like to allow:
 
 ```ruby
 class APIController < ApplicationController
