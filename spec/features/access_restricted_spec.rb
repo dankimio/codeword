@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'Accessing a page in the application' do
+  include CodewordTestHelper
+
   def enter_code_word(code_word)
     fill_in 'Code word', with: code_word
     click_on 'Go'
@@ -9,7 +11,10 @@ describe 'Accessing a page in the application' do
   before { reset_user_agent }
 
   context 'without a configured code word' do
-    before { ENV.delete('CODEWORD') }
+    before do
+      ENV.delete('CODEWORD')
+      reset_codeword_configuration_cache!
+    end
 
     it 'displays the requested page' do
       visit '/posts'
