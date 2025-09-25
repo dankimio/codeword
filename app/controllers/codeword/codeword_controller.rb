@@ -1,6 +1,6 @@
 module Codeword
   class CodewordController < Codeword::ApplicationController
-    CRAWLER_REGEX = /crawl|googlebot|slurp|spider|bingbot|tracker|click|parser|spider/
+    CRAWLER_REGEX = /crawl|googlebot|slurp|spider|bingbot|tracker|parser/
 
     skip_before_action :require_codeword!, raise: false
 
