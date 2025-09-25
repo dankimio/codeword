@@ -14,7 +14,7 @@ module Codeword
       if params[:codeword].present?
         @codeword = params[:codeword].to_s.downcase
         @return_to = params[:return_to]
-        if @codeword == codeword_code.to_s.downcase
+        if @codeword == Codeword::Configuration.codeword_code.to_s.downcase
           set_cookie
           run_redirect
         else
@@ -28,7 +28,7 @@ module Codeword
     private
 
     def set_cookie
-      cookies[:codeword] = { value: @codeword.to_s.downcase, expires: (Time.now + codeword_cookie_lifetime) }
+      cookies[:codeword] = { value: @codeword.to_s.downcase, expires: (Time.now + Codeword::Configuration.codeword_cookie_lifetime) }
     end
 
     def run_redirect
