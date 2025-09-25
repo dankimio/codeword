@@ -1,6 +1,4 @@
-lib = File.expand_path("lib", __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "codeword/version"
+require_relative "lib/codeword/version"
 
 Gem::Specification.new do |spec|
   spec.name = "codeword"
@@ -18,8 +16,14 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = "https://github.com/dankimio/codeword"
   spec.metadata["changelog_uri"] = "https://github.com/dankimio/codeword/CHANGELOG.md"
 
-  spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  # Specify which files should be added to the gem when it is released.
+  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  gemspec = File.basename(__FILE__)
+  spec.files = IO.popen(%w[git ls-files -z], chdir: __dir__, err: IO::NULL) do |ls|
+    ls.readlines("\x0", chomp: true).reject do |f|
+      (f == gemspec) ||
+        f.start_with?(*%w[bin/ Gemfile .gitignore test/ .github/ .rubocop.yml])
+    end
   end
 
   spec.add_dependency "rails", ">= 7.2"
