@@ -5,9 +5,7 @@ module Codeword
     def self.from_credentials(setting)
       store = Rails.application.credentials
 
-      store.codeword.respond_to?(:fetch) &&
-        store.codeword.fetch(setting, store.public_send("codeword_#{setting}")) ||
-        store.public_send("codeword_#{setting}") || store.public_send(setting)
+      store.dig(:codeword, setting) || store["codeword_#{setting}".to_sym] || store[setting]
     end
 
     def self.cookie_lifetime
