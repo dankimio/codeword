@@ -3,6 +3,10 @@ require 'test_helper'
 class CodewordControllerTest < ActionDispatch::IntegrationTest
   include CodewordTestHelper
 
+  setup do
+    reset_codeword_configuration_cache!
+  end
+
   test 'malicious user posts invalid data does not fail' do
     post '/codeword/unlock', params: { foo: 'bar' }
     assert_response :success
@@ -14,7 +18,6 @@ class CodewordControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cookie_lifetime: integer returns configured duration' do
-    reset_codeword_configuration_cache!
     ENV['COOKIE_LIFETIME_IN_WEEKS'] = '52'
     assert_equal 52.weeks, Codeword::Configuration.codeword_cookie_lifetime
   ensure
@@ -22,7 +25,6 @@ class CodewordControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cookie_lifetime: invalid returns default 5.years' do
-    reset_codeword_configuration_cache!
     ENV['COOKIE_LIFETIME_IN_WEEKS'] = 'invalid value'
     assert_equal 5.years, Codeword::Configuration.codeword_cookie_lifetime
   ensure
@@ -30,14 +32,12 @@ class CodewordControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'cookie_lifetime: not set returns default 5.years' do
-    reset_codeword_configuration_cache!
     ENV.delete('COOKIE_LIFETIME_IN_WEEKS')
     assert_equal 5.years, Codeword::Configuration.codeword_cookie_lifetime
   end
 
   test 'open redirect protection: does not redirect to external host via return_to' do
     ENV['CODEWORD'] = 'secret'
-    reset_codeword_configuration_cache!
     post '/codeword/unlock', params: { codeword: 'secret', return_to: 'https://evil.com/phish' }
     assert_redirected_to '/'
   ensure
@@ -46,7 +46,6 @@ class CodewordControllerTest < ActionDispatch::IntegrationTest
 
   test 'open redirect protection: redirects to valid relative path via return_to' do
     ENV['CODEWORD'] = 'secret'
-    reset_codeword_configuration_cache!
     post '/codeword/unlock', params: { codeword: 'secret', return_to: '/posts/1' }
     assert_redirected_to '/posts/1'
   ensure
@@ -55,7 +54,6 @@ class CodewordControllerTest < ActionDispatch::IntegrationTest
 
   test 'cookie security attributes are set on codeword cookie' do
     ENV['CODEWORD'] = 'secret'
-    reset_codeword_configuration_cache!
     post '/codeword/unlock', params: { codeword: 'secret', return_to: '/posts' }
     header = response.headers['Set-Cookie']
     assert_includes header, 'codeword='

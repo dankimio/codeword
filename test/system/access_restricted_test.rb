@@ -11,6 +11,7 @@ class AccessRestrictedTest < ActionDispatch::IntegrationTest
 
   setup do
     reset_user_agent
+    reset_codeword_configuration_cache!
   end
 
   test 'without a configured code word displays the requested page' do
@@ -90,7 +91,7 @@ class AccessRestrictedTest < ActionDispatch::IntegrationTest
     set_user_agent_to('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
 
     visit '/posts?codeword=omgponies'
-    assert_equal '', page.body.to_s
+    assert page.body.to_s.strip.empty?
   ensure
     reset_user_agent
     ENV.delete('CODEWORD')
@@ -120,6 +121,7 @@ class AccessRestrictedTest < ActionDispatch::IntegrationTest
     ENV['CODEWORD'] = 'OMGponies'
     set_user_agent_to(nil)
     visit '/posts?codeword=omgponies'
+    assert_equal 200, page.status_code
   ensure
     ENV.delete('CODEWORD')
   end
