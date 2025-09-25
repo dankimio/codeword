@@ -1,5 +1,5 @@
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../spec/dummy/config/environment.rb', __dir__)
+require File.expand_path('dummy/config/environment.rb', __dir__)
 require 'rails/test_help'
 
 require 'capybara/rails'
@@ -20,5 +20,3 @@ class ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 end
-
-
