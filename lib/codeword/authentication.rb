@@ -1,3 +1,5 @@
+require 'active_support/concern'
+
 module Codeword
   module Authentication
     extend ActiveSupport::Concern
