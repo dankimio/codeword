@@ -33,10 +33,12 @@ module Codeword
 
     def run_redirect
       if @return_to.present?
-        redirect_to @return_to.to_s
+        redirect_to @return_to.to_s, allow_other_host: false
       else
         redirect_to '/'
       end
+    rescue ActionController::Redirecting::UnsafeRedirectError
+      redirect_to '/'
     end
   end
 end

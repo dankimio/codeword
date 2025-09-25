@@ -44,4 +44,21 @@ describe Codeword::CodewordController do
       end
     end
   end
+
+  describe 'open redirect protection' do
+    before do
+      ENV['CODEWORD'] = 'secret'
+      reset_codeword_configuration_cache!
+    end
+
+    it 'does not redirect to an external host via return_to' do
+      post 'unlock', params: { codeword: 'secret', return_to: 'https://evil.com/phish' }
+      response.should redirect_to('/')
+    end
+
+    it 'redirects to a valid relative path via return_to' do
+      post 'unlock', params: { codeword: 'secret', return_to: '/posts/1' }
+      response.should redirect_to('/posts/1')
+    end
+  end
 end
