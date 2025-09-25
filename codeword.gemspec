@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email = ["git@dan.kim"]
 
   spec.summary = "Lock staging servers from search engines and prying eyes."
-  spec.description = "A simple gem to more elegantly place a staging server or other in-progress application behind a basic codeword. It’s easy to implement, share with clients/collaborators, and more beautiful than the typical password-protection sheet."
+  spec.description = "Protect your staging server or in-progress app with a simple codeword prompt. Easy to install and share, prettier than a basic password prompt."
   spec.homepage = "https://github.com/dankimio/codeword"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
