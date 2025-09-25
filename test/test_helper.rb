@@ -1,6 +1,6 @@
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('dummy/config/environment.rb', __dir__)
-require 'rails/test_help'
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("dummy/config/environment.rb", __dir__)
+require "rails/test_help"
 
 class ActionDispatch::IntegrationTest
   def follow_redirects!(limit: 5)

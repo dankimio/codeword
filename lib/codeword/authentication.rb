@@ -1,4 +1,4 @@
-require 'active_support/concern'
+require "active_support/concern"
 
 module Codeword
   module Authentication
@@ -9,7 +9,7 @@ module Codeword
       return if cookies[:codeword].present? && cookies[:codeword] == Codeword::Configuration.codeword_code.to_s.downcase
 
       redirect_to codeword.unlock_path(
-        return_to: request.fullpath.split('?codeword')[0],
+        return_to: request.fullpath.split("?codeword")[0],
         codeword: params[:codeword]
       )
     end

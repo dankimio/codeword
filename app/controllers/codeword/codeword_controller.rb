@@ -5,7 +5,7 @@ module Codeword
     skip_before_action :require_codeword!, raise: false
 
     def unlock
-      user_agent = request.env['HTTP_USER_AGENT'].presence
+      user_agent = request.env["HTTP_USER_AGENT"].presence
       if user_agent&.downcase&.match(CRAWLER_REGEX)
         head :ok
         return
@@ -41,10 +41,10 @@ module Codeword
       if @return_to.present?
         redirect_to @return_to.to_s, allow_other_host: false
       else
-        redirect_to '/'
+        redirect_to "/"
       end
     rescue ActionController::Redirecting::UnsafeRedirectError
-      redirect_to '/'
+      redirect_to "/"
     end
   end
 end

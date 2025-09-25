@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Codeword
   module Configuration
     def self.from_credentials(setting)
@@ -10,12 +8,12 @@ module Codeword
 
     def self.cookie_lifetime
       @cookie_lifetime ||=
-        ENV['COOKIE_LIFETIME_IN_WEEKS'] ||
+        ENV["COOKIE_LIFETIME_IN_WEEKS"] ||
         from_credentials(:cookie_lifetime_in_weeks)
     end
 
     def self.codeword_code
-      @codeword_code ||= ENV['CODEWORD'] || from_credentials(:codeword)
+      @codeword_code ||= ENV["CODEWORD"] || from_credentials(:codeword)
     end
 
     def self.codeword_cookie_lifetime
