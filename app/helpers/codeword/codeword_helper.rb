@@ -3,7 +3,7 @@
 module Codeword
   module CodewordHelper
     def codeword_hint
-      @codeword_hint ||= ENV['CODEWORD_HINT'] || ENV['codeword_hint'] || Codeword::Configuration.from_config(:hint)
+      @codeword_hint ||= ENV['CODEWORD_HINT'] || Codeword::Configuration.from_config(:hint)
     end
   end
 end
