@@ -5,5 +5,4 @@ require 'codeword/authentication'
 require 'codeword/configuration'
 
 module Codeword
-  extend ActiveSupport::Concern
 end
