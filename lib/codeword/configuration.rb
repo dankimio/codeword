@@ -13,12 +13,11 @@ module Codeword
     def self.cookie_lifetime
       @cookie_lifetime ||=
         ENV['COOKIE_LIFETIME_IN_WEEKS'] ||
-        ENV['cookie_lifetime_in_weeks'] ||
         from_config(:cookie_lifetime_in_weeks)
     end
 
     def self.codeword_code
-      @codeword_code ||= ENV['CODEWORD'] || ENV['codeword'] || from_config(:codeword)
+      @codeword_code ||= ENV['CODEWORD'] || from_config(:codeword)
     end
 
     def self.codeword_cookie_lifetime
